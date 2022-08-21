@@ -14,6 +14,17 @@ public class Student {
                 ", isEnroll=" + isEnroll +
                 '}';
     }
+    public Student(int id, String name, String rollNmber, boolean isEnroll) {
+        this.ID = id;
+        this.Name = name;
+        this.RollNumber = RollNumber;
+        this.isEnroll = isEnroll;
+    }
+    public Student( String name, String rollNmber, boolean isEnroll) {
+        this.Name = name;
+        this.RollNumber = RollNumber;
+        this.isEnroll = isEnroll;
+    }
 
     public String getName() {
         return Name;
