@@ -17,19 +17,19 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button buttonAdd, buttonViewAll;
+    Button buttonAdd, buttonView;
     EditText editName, editRollNumber;
     TextView nameText, rollText;
     Switch switchIsActive;
     ListView listViewStudent;
-    ArrayList<StudentModel> list;
+    ArrayList<Student> list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         buttonAdd = findViewById(R.id.buttonAdd);
-        buttonViewAll = findViewById(R.id.buttonViewAll);
+        buttonView = findViewById(R.id.buttonView);
         editName = findViewById(R.id.editTextName);
         editRollNumber = findViewById(R.id.editTextRollNumber);
         nameText = findViewById(R.id.nameTextView);
@@ -54,12 +54,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        buttonViewAll.setOnClickListener(new View.OnClickListener() {
+        buttonView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DBHelper dbHelper = new DBHelper(MainActivity.this);
                 list = dbHelper.getAllStudents();
-//                ArrayList<StudentModel> studentModelArrayList = new ArrayList<StudentModel>();
+//                ArrayList<Student> studentModelArrayList = new ArrayList<StudentModel>();
 //                ArrayAdapter arrayAdapter = new ArrayAdapter<StudentModel>
 //                        (MainActivity.this, android.R.layout.simple_list_item_1,list);
 //                listViewStudent.setAdapter(arrayAdapter);

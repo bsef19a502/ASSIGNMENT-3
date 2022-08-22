@@ -17,7 +17,6 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.assignment3.*;
 
 import java.util.ArrayList;
 
@@ -40,7 +39,7 @@ public class myAdapter extends ArrayAdapter<Student> {
             @Override
             public void onClick(View view) {
                 DBHelper dbHelper = new DBHelper(getContext());
-                dbHelper.deleteStudent(studentModel.getId());
+                dbHelper.deleteStudent(studentModel.getID());
             }
         });
         Button updateButton = convertView.findViewById(R.id.editButton);
