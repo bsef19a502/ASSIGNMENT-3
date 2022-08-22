@@ -1,5 +1,6 @@
 package org.haqnawaz.assignment_database;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -17,19 +18,19 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button buttonAdd, buttonView;
+    Button buttonAdd, buttonViewAll;
     EditText editName, editRollNumber;
     TextView nameText, rollText;
     Switch switchIsActive;
     ListView listViewStudent;
-    ArrayList<Student> list;
+    ArrayList<StudentModel> list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         buttonAdd = findViewById(R.id.buttonAdd);
-        buttonView = findViewById(R.id.buttonView);
+        buttonViewAll = findViewById(R.id.buttonView);
         editName = findViewById(R.id.editTextName);
         editRollNumber = findViewById(R.id.editTextRollNumber);
         nameText = findViewById(R.id.nameTextView);
@@ -38,12 +39,12 @@ public class MainActivity extends AppCompatActivity {
         listViewStudent = findViewById(R.id.listViewStudent);
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {
-            Student studentModel;
+            StudentModel studentModel;
 
             @Override
             public void onClick(View v) {
                 try {
-                    studentModel = new Student(editName.getText().toString(), (editRollNumber.getText().toString()), switchIsActive.isChecked());
+                    studentModel = new StudentModel(editName.getText().toString(), (editRollNumber.getText().toString()), switchIsActive.isChecked());
                     //Toast.makeText(MainActivity.this, studentModel.toString(), Toast.LENGTH_SHORT).show();
                 }
                 catch (Exception e){
@@ -54,12 +55,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        buttonView.setOnClickListener(new View.OnClickListener() {
+        buttonViewAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DBHelper dbHelper = new DBHelper(MainActivity.this);
                 list = dbHelper.getAllStudents();
-//                ArrayList<Student> studentModelArrayList = new ArrayList<StudentModel>();
+//                ArrayList<StudentModel> studentModelArrayList = new ArrayList<StudentModel>();
 //                ArrayAdapter arrayAdapter = new ArrayAdapter<StudentModel>
 //                        (MainActivity.this, android.R.layout.simple_list_item_1,list);
 //                listViewStudent.setAdapter(arrayAdapter);
@@ -81,7 +82,19 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.d("TAG=====", "onItemClick: "+list.get(i).getName());
             }
+//            public void editOnClick(View view) {
+//                Log.d("TAG =======", "Edit on Click "+list.get(0).getName());
+//            }
         });
     }
 
+
+//    public void editOnClick(View view) {
+//
+//        Log.d("TAG =======", "Edit on Click");
+//    }
+//
+//    public void deleteOnClick(View view) {
+//        Log.d("TAG =======", "Delete on Click"+list.get(0).getName());
+//    }
 }

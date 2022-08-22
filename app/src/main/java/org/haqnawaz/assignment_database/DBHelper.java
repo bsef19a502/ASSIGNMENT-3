@@ -1,17 +1,17 @@
 package org.haqnawaz.assignment_database;
 
-        import static android.os.Build.ID;
+import static android.os.Build.ID;
 
-        import android.content.ContentValues;
-        import android.content.Context;
-        import android.database.Cursor;
-        import android.database.sqlite.SQLiteDatabase;
-        import android.database.sqlite.SQLiteOpenHelper;
-        import android.util.Log;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
-        import androidx.annotation.Nullable;
+import androidx.annotation.Nullable;
 
-        import java.util.ArrayList;
+import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper {
     public static final String STUDENT_ID = "StudentID";
@@ -42,13 +42,13 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void  addStudent(Student STUDENTModel){
+    public void  addStudent(StudentModel STUDENTModel){
         SQLiteDatabase db = this.getWritableDatabase();
         //Hash map, as we did in bundles
         ContentValues cv = new ContentValues();
 
         cv.put(STUDENT_NAME, STUDENTModel.getName());
-        cv.put(STUDENT_ROLL, STUDENTModel.getRollNumber());
+        cv.put(STUDENT_ROLL, STUDENTModel.getRollNmber());
         cv.put(STUDENT_ENROLL, STUDENTModel.isEnroll());
         db.insert(STUDENT_TABLE, null, cv);
         db.close();
@@ -58,19 +58,19 @@ public class DBHelper extends SQLiteOpenHelper {
         //else{return true;}
     }
 
-    public ArrayList<Student> getAllStudents() {
+    public ArrayList<StudentModel> getAllStudents() {
 
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursorCourses = db.rawQuery("SELECT * FROM " + STUDENT_TABLE, null);
 
-        ArrayList<Student> studentArrayList = new ArrayList<>();
+        ArrayList<StudentModel> studentArrayList = new ArrayList<>();
 
         // moving our cursor to first position.
         if (cursorCourses.moveToFirst()) {
             do {
 
-                studentArrayList.add(new Student(cursorCourses.getInt(0), cursorCourses.getString(1),
+                studentArrayList.add(new StudentModel(cursorCourses.getInt(0), cursorCourses.getString(1),
                         cursorCourses.getString(2),
                         cursorCourses.getInt(3) == 1 ? true : false));
             } while (cursorCourses.moveToNext());
